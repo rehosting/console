@@ -24,6 +24,8 @@ int main(int argc, char **argv) {
 
     putenv("TERM=linux");
     putenv("PATH=/sbin:/bin:/usr/sbin:/usr/bin");
+    
+    ioctl(0, TIOCSCTTY, 1);
 
     return execl("/bin/sh", "/bin/sh", NULL);
 }
