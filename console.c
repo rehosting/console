@@ -29,5 +29,5 @@ int main(int argc, char **argv) {
     putenv("TERM=linux");
     putenv("PATH=/sbin:/bin:/usr/sbin:/usr/bin");
 
-    return execl("/bin/sh", "/bin/sh", NULL);
+    return execl("/igloo/utils/sh", "/igloo/utils/sh", NULL);
 }
