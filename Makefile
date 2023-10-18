@@ -1,19 +1,28 @@
+BUILD?=build
 CFLAGS=-O2 -Wall
 LDFLAGS=-static
+ARCH ?= x86_64-linux-gnu
 
-OBJECTS=$(SOURCES:.c=.o)
 SOURCES=console.c
-TARGET=console
+OBJECTS=$(SOURCES:.c=.o)
+TARGET=$(BUILD)/console-${ARCH}
+
+ifeq ($(ARCH),mipsel-linux-musl)
+CFLAGS += -mips32r3
+else ifeq ($(ARCH),mipseb-linux-musl)
+CFLAGS += -mips32r3
+else ifeq ($(ARCH),mips64eb-linux-musl)
+CFLAGS += -mips64r2
+else ifeq ($(ARCH),mips64el-linux-musl)
+CFLAGS += -mips64r2
+endif
 
 all: $(SOURCES) $(TARGET)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
-
-.c.o:
-	$(CC) -c $(CFLAGS) $< -o $@
+$(TARGET): $(SOURCES)
+	$(CC) $(LDFLAGS) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f *.o console
+	rm -f $(BUILD)/console*
 
 .PHONY: clean
