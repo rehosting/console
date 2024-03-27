@@ -23,7 +23,6 @@ jobs:
       - name: Build 
         run: |
           docker run --rm -v $PWD:/app -w /app ghcr.io/panda-re/embedded-toolchains:latest /app/build.sh
-          tar -czvf console-latest.tar.gz build
 
       - name: Save package
         uses: actions/upload-artifact@v3
@@ -50,8 +49,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./console-latest.tar.gz
-          asset_name: console-latest.tar.gz
+          asset_path: ./console.tar.gz
+          asset_name: console.tar.gz
           asset_content_type: application/gzip
 
       - name: Publish release
