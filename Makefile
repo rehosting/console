@@ -3,6 +3,10 @@ CFLAGS=-O2 -Wall
 LDFLAGS=-static
 ARCH ?= x86_64-linux-gnu
 
+CFLAGS += -DSHELL=\"/igloo/utils/sh\"
+CFLAGS += -DSERIAL=\"/firmadyne/ttyS1\"
+
+
 SOURCES=console.c
 OBJECTS=$(SOURCES:.c=.o)
 TARGET=$(BUILD)/console-${ARCH}
