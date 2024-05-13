@@ -4,7 +4,7 @@ LDFLAGS=-static
 ARCH ?= x86_64-linux-gnu
 
 CFLAGS += -DSHELL=\"/igloo/utils/sh\"
-CFLAGS += -DSERIAL=\"/firmadyne/ttyS1\"
+CFLAGS += -DSERIAL=\"/igloo/serial\"
 
 
 SOURCES=console.c
