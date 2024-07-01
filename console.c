@@ -12,7 +12,20 @@
 int main(int argc, char **argv) {
     int fd;
 
-    setsid();
+    // fork to ensure we are not a session leader
+    pid_t pid = fork();
+    if (pid < 0) {
+        perror("fork failed");
+        return 1;
+    } else if (pid > 0) {
+        // i.e. parent process
+        exit(0);
+    }
+
+    if (setsid() == -1) {
+        perror("setsid failed");
+        return 1;
+    }
 
     close(2);
     close(1);
@@ -23,8 +36,9 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    dup(fd);
-    dup(fd);
+    dup2(fd, 0);
+    dup2(fd, 1);
+    dup2(fd, 2);
 
     putenv("TERM=linux");
     putenv("PATH=/sbin:/bin:/usr/sbin:/usr/bin");
