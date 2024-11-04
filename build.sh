@@ -48,5 +48,4 @@ for x in $BUILDDIR/console-*; do
   mkdir -p ${OUT}/${ARCH_DIR}
   cp $x ${OUT}/${ARCH_DIR}/console
 done
-
-tar cvzf console.tar.gz ${OUT}
+tar cvzf console.tar.gz -C ${OUT} .
