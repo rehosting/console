@@ -17,35 +17,35 @@ for x in $BUILDDIR/console-*; do
   ARCH=$(basename $x | cut -d- -f2-)
   case $ARCH in
     x86_64-linux-gnu)
-      SUFFIX="x86_64"
+      ARCH_DIR="x86_64"
       ;;
     i686-linux-musl)
-      SUFFIX="x86"
+      ARCH_DIR="x86"
       ;;
     arm-linux-musleabi)
-      SUFFIX="armel"
+      ARCH_DIR="armel"
       ;;
     aarch64-linux-musl)
-      SUFFIX="aarch64"
+      ARCH_DIR="aarch64"
       ;;
     mipsel-linux-musl)
-      SUFFIX="mipsel"
+      ARCH_DIR="mipsel"
       ;;
     mipseb-linux-musl)
-      SUFFIX="mipseb"
+      ARCH_DIR="mipseb"
       ;;
     mips64eb-linux-musl)
-      SUFFIX="mips64eb"
+      ARCH_DIR="mips64eb"
       ;;
     mips64el-linux-musl)
-      SUFFIX="mips64el"
+      ARCH_DIR="mips64el"
       ;;
     *)
       echo "Unsupported architecture: $ARCH"
       exit 1
       ;;
   esac
-  cp $x ${OUT}/console.${SUFFIX}
+  mkdir -p ${OUT}/${ARCH_DIR}
+  cp $x ${OUT}/${ARCH_DIR}/console
 done
-
-tar cvzf console.tar.gz ${OUT}
+tar cvzf console.tar.gz -C ${OUT} .
