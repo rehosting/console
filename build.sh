@@ -1,5 +1,5 @@
 #!/bin/bash
-TARGETLIST=(x86_64-linux-gnu i686-linux-musl mipseb-linux-musl mipsel-linux-musl arm-linux-musleabi aarch64-linux-musl mips64eb-linux-musl mips64el-linux-musl)
+TARGETLIST=(x86_64-linux-gnu i686-linux-musl mipseb-linux-musl mipsel-linux-musl arm-linux-musleabi aarch64-linux-musl mips64eb-linux-musl mips64el-linux-musl  powerpc-linux-musl powerpcle-linux-musl powerpc64-linux-musl powerpc64le-linux-musl loongarch64-unknown-linux-gnu)
 
 BUILDDIR=build
 mkdir -p $BUILDDIR
@@ -39,6 +39,21 @@ for x in $BUILDDIR/console-*; do
       ;;
     mips64el-linux-musl)
       ARCH_DIR="mips64el"
+      ;;
+    powerpc-linux-musl)
+      ARCH_DIR="powerpc"
+      ;;
+    powerpcle-linux-musl)
+      ARCH_DIR="powerpcle"
+      ;;
+    powerpc64-linux-musl)
+      ARCH_DIR="powerpc64"
+      ;;
+    powerpc64le-linux-musl)
+      ARCH_DIR="powerpc64le"
+      ;;
+    loongarch64-unknown-linux-gnu)
+      ARCH_DIR="loongarch64"
       ;;
     *)
       echo "Unsupported architecture: $ARCH"
