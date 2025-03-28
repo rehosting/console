@@ -1,5 +1,5 @@
 #!/bin/bash
-TARGETLIST=(x86_64-linux-gnu i686-linux-musl mipseb-linux-musl mipsel-linux-musl arm-linux-musleabi aarch64-linux-musl mips64eb-linux-musl mips64el-linux-musl  powerpc-linux-musl powerpcle-linux-musl powerpc64-linux-musl powerpc64le-linux-musl loongarch64-unknown-linux-gnu)
+TARGETLIST=(x86_64-linux-gnu i686-linux-musl mipseb-linux-musl mipsel-linux-musl arm-linux-musleabi aarch64-linux-musl mips64eb-linux-musl mips64el-linux-musl  powerpc-linux-musl powerpcle-linux-musl powerpc64-linux-musl powerpc64le-linux-musl riscv32-linux-musl riscv64-linux-musl loongarch64-unknown-linux-gnu)
 
 BUILDDIR=build
 mkdir -p $BUILDDIR
@@ -51,6 +51,12 @@ for x in $BUILDDIR/console-*; do
       ;;
     powerpc64le-linux-musl)
       ARCH_DIR="powerpc64le"
+      ;;
+    riscv32-linux-musl)
+      ARCH_DIR="riscv32"
+      ;;
+    riscv64-linux-musl)
+      ARCH_DIR="riscv64"
       ;;
     loongarch64-unknown-linux-gnu)
       ARCH_DIR="loongarch64"
